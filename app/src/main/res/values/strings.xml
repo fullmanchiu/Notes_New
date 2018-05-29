@@ -2,9 +2,13 @@
     <string name="app_name">Notes</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Login for Sync</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_search">Search</string>
     <string name="action_share">share</string>
+    <string name="nav_note_all">All</string>
+    <string name="nav_note_unclassified">Unclassified</string>
+    <string name="nav_note_work">Work</string>
+    <string name="nav_note_study">Study</string>
+    <string name="nav_note_life">Life</string>
 </resources>

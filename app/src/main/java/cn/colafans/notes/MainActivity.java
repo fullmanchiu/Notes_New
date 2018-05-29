@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -80,15 +81,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_note_all) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_note_unclassified) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_note_work) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_note_study) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_note_life) {
 
         }
 
