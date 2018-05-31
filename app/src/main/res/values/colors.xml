@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorTitleTextColor">#000000</color>
     <color name="fab_add_color">#FFAB00</color>
+    <color name="gery">#888888</color>
 </resources>

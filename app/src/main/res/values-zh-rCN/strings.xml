@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_share">share</string>
+    <string name="app_name">便签</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">登陆以同步</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_search">搜素</string>
+    <string name="nav_note_all">全部</string>
+    <string name="nav_note_unclassified">未分组</string>
+    <string name="nav_note_work">工作</string>
+    <string name="nav_note_study">学习</string>
+    <string name="nav_note_life">生活</string>
+    <string name="action_share">分享</string>
+    <string name="empty_note">目前没有笔记</string>
 </resources>
