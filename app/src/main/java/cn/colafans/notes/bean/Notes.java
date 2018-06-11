@@ -1,4 +1,4 @@
-package cn.colafans.notes;
+package cn.colafans.notes.bean;
 
 import java.util.Date;
 

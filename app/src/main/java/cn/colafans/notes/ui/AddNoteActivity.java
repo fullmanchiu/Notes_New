@@ -1,4 +1,4 @@
-package cn.colafans.notes;
+package cn.colafans.notes.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +11,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.Calendar;
+import java.util.Date;
+
+import cn.colafans.notes.R;
 
 public class AddNoteActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -29,6 +34,13 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Calendar calendar = Calendar.getInstance();
+        timestamp.setText(calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.add_note, menu);
         return true;
@@ -38,8 +50,6 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        //if (id == R.id.action_share) {
         if (id == android.R.id.home) {
             finish();
             return true;
@@ -49,7 +59,7 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        TextView textView = (TextView)view;
+        TextView textView = (TextView) view;
         textView.setTextColor(Color.GRAY);
         textView.setTextSize(12);
     }
