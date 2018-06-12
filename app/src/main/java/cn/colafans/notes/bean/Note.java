@@ -1,18 +1,24 @@
 package cn.colafans.notes.bean;
 
-import java.util.Date;
+import org.litepal.crud.LitePalSupport;
 
-public class Notes {
+public class Note extends LitePalSupport{
     private String title;
     private String summary;
-    private String sort;
+    private int sort;
     private long timestamp;
+    private boolean isSync;
 
-    public Notes(String title, String summary, String sort, long timestamp) {
+    public Note(){
+        this.sort = 0;
+        this.isSync = false;
+    }
+    public Note(String title, String summary, int sort, long timestamp) {
         this.title = title;
         this.summary = summary;
         this.sort = sort;
         this.timestamp = timestamp;
+        this.isSync = false;
     }
 
     public String getTitle() {
@@ -31,11 +37,11 @@ public class Notes {
         this.summary = summary;
     }
 
-    public String getSort() {
+    public int getSort() {
         return sort;
     }
 
-    public void setSort(String sort) {
+    public void setSort(int sort) {
         this.sort = sort;
     }
 
@@ -45,5 +51,13 @@ public class Notes {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public boolean isSync() {
+        return isSync;
+    }
+
+    public void setSync(boolean sync) {
+        isSync = sync;
     }
 }

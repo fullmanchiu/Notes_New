@@ -11,11 +11,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.litepal.LitePal;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import cn.colafans.notes.R;
+import cn.colafans.notes.bean.Note;
 
 public class AddNoteActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -38,6 +43,14 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
         super.onResume();
         Calendar calendar = Calendar.getInstance();
         timestamp.setText(calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
+        Log.d("lancelot", "1111111111111111");
+        Note note = new Note();
+        note.setTitle("aaa");
+        note.setSummary("bbbb");
+        note.setTimestamp(new Date().getTime());
+        note.save();
+        List<Note> notes = LitePal.findAll(Note.class);
+        Toast.makeText(this,"111"+notes.toString(),Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -68,4 +81,6 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }
