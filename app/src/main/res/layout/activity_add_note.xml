@@ -14,6 +14,7 @@
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <RelativeLayout
+        android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_add_note"
@@ -38,5 +39,24 @@
 
         </Spinner>
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl1"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_note_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_note_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="11111"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

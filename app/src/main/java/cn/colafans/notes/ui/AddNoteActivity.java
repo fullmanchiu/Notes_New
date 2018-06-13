@@ -4,11 +4,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +26,10 @@ import cn.colafans.notes.bean.Note;
 
 public class AddNoteActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Spinner spinner;
-    TextView timestamp;
+    private Spinner spinner;
+    private TextView timestamp;
+    private EditText etTitle;
+    private EditText etSummary;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,13 +40,8 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
         spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         timestamp = findViewById(R.id.note_time);
-        //Note note = new Note();
-        /*note.setTitle("aaa");
-        note.setSummary("bbbb");
-        note.setTimestamp(new Date().getTime());
-        note.saveThrows();
-        List<Note> notes = LitePal.findAll(Note.class);
-        Toast.makeText(this,"111"+notes.toString(),Toast.LENGTH_LONG).show();*/
+        etTitle = findViewById(R.id.et_note_title);
+        etSummary = findViewById(R.id.et_note_summary);
     }
 
     @Override
@@ -55,16 +54,29 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onPause() {
         super.onPause();
-        saveNote();
+        if (!isNoteEmpty()) {
+            saveNote();
+        }
+    }
+
+    private boolean isNoteEmpty() {
+        boolean empty = true;
+        if (!TextUtils.isEmpty(etTitle.getText())) {
+            empty = false;
+        }
+        if (!TextUtils.isEmpty(etSummary.getText())) {
+            empty = false;
+        }
+        return empty;
     }
 
     private void saveNote() {
         Note note = new Note();
         note.setSort(spinner.getSelectedItemPosition());
-        note.setTitle("");
-        note.setSummary("");
+        note.setTitle(etTitle.getText().toString());
+        note.setSummary(etSummary.getText().toString());
         note.setTimestamp(System.currentTimeMillis());
-        note.saveAsync();
+        note.saveThrows();
     }
 
     @Override
