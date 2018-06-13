@@ -36,6 +36,13 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
         spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         timestamp = findViewById(R.id.note_time);
+        //Note note = new Note();
+        /*note.setTitle("aaa");
+        note.setSummary("bbbb");
+        note.setTimestamp(new Date().getTime());
+        note.saveThrows();
+        List<Note> notes = LitePal.findAll(Note.class);
+        Toast.makeText(this,"111"+notes.toString(),Toast.LENGTH_LONG).show();*/
     }
 
     @Override
@@ -43,14 +50,21 @@ public class AddNoteActivity extends AppCompatActivity implements AdapterView.On
         super.onResume();
         Calendar calendar = Calendar.getInstance();
         timestamp.setText(calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE));
-        Log.d("lancelot", "1111111111111111");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveNote();
+    }
+
+    private void saveNote() {
         Note note = new Note();
-        note.setTitle("aaa");
-        note.setSummary("bbbb");
-        note.setTimestamp(new Date().getTime());
-        note.save();
-        List<Note> notes = LitePal.findAll(Note.class);
-        Toast.makeText(this,"111"+notes.toString(),Toast.LENGTH_LONG).show();
+        note.setSort(spinner.getSelectedItemPosition());
+        note.setTitle("");
+        note.setSummary("");
+        note.setTimestamp(System.currentTimeMillis());
+        note.saveAsync();
     }
 
     @Override
