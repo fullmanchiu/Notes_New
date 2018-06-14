@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.litepal.LitePal;
+
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +22,23 @@ public class NoteListAdapter extends BaseAdapter {
     //private int resource;
     private LayoutInflater inflater;
 
-    public NoteListAdapter(Context context, List<Note> noteList) {
+    public NoteListAdapter(Context context) {
         this.context = context;
-        this.noteList = noteList;
+        noteList = querryData();
+    }
+
+    /*private List<Note> querryData(int sort) {
+        return LitePal.where("sort = ?", sort + "").order("id desc").find(Note.class);
+    }*/
+    private List<Note> querryData() {
+        return LitePal.order("id desc").find(Note.class);
+    }
+
+
+    @Override
+    public void notifyDataSetChanged() {
+        noteList = querryData();
+        super.notifyDataSetChanged();
     }
 
     @Override

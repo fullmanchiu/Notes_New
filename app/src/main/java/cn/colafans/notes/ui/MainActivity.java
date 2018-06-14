@@ -1,6 +1,7 @@
 package cn.colafans.notes.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity
 
     private ListView notesList;
     private NoteListAdapter adapter;
-    private List<Note> noteList;
+    private int noteSort = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,AddNoteActivity.class));
+                startActivity(new Intent(MainActivity.this, AddNoteActivity.class));
             }
         });
 
@@ -54,9 +55,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
-        notesList =findViewById(R.id.note_list);
-        noteList = LitePal.order("id desc").find(Note.class);
-        adapter = new NoteListAdapter(this, noteList);
+        notesList = findViewById(R.id.note_list);
+        adapter = new NoteListAdapter(this);
         notesList.setAdapter(adapter);
     }
 
@@ -101,17 +101,17 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_note_all) {
 
         } else if (id == R.id.nav_note_unclassified) {
-
+            noteSort = 0;
         } else if (id == R.id.nav_note_work) {
-
+            noteSort = 1;
         } else if (id == R.id.nav_note_study) {
-
+            noteSort = 2;
         } else if (id == R.id.nav_note_life) {
-
+            noteSort = 3;
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        adapter.notifyDataSetChanged();
         return true;
     }
 
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity
         freshData();
     }
 
-    private void freshData(){
+    private void freshData() {
         adapter.notifyDataSetChanged();
     }
 }
